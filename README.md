@@ -1,89 +1,114 @@
-<p align="center">
-<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
-</p>
 
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+# osTicket: Prerequisites and Installation
 
+## Project Overview
+This project demonstrates the installation and configuration of osTicket, an open-source help desk ticketing system, using Microsoft Azure and Windows 10.
 
-<h2>Video Demonstration</h2>
-
-- ### [YouTube: How To Install osTicket with Prerequisites](https://www.youtube.com)
-
-<h2>Environments and Technologies Used</h2>
-
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
+## Environments and Technologies Used
+- Microsoft Azure (Virtual Machines)
+- Windows 10 (21H2)
 - Internet Information Services (IIS)
+- MySQL 5.5.62
+- PHP 7.3.8
+- osTicket v1.15.8
 
-<h2>Operating Systems Used </h2>
+## Prerequisites
+- Azure subscription
+- Understanding of Windows OS
+- Basic knowledge of web servers
 
-- Windows 10</b> (21H2)
+## Implementation Steps
 
-<h2>List of Prerequisites</h2>
+### 1. Create Azure Virtual Machine
+- Created a Windows 10 VM (4 vCPUs) named "osticket-vm"
+- Username: labuser
+- Password: osTicketPassword1! (would use more secure passwords in production)
 
-Azure VM Configuration - A Windows 10 VM with 4 vCPUs named "osticket-vm" must be created in Azure, accessible via RDP with specified credentials (labuser/osTicketPassword1!).
+![Azure VM Creation](https://i.imgur.com/5HzGhsb.png)
 
-IIS with CGI - Internet Information Services must be installed/enabled with CGI feature under World Wide Web Services -> Application Development Features.
+### 2. Install Internet Information Services (IIS)
+- Enabled IIS in Windows WITH CGI
+- Installed World Wide Web Services -> Application Development Features -> CGI
 
-PHP Setup - Requires PHP 7.3.8 extracted to C:\PHP, along with PHP Manager for IIS and the Rewrite Module installed from provided installation files.
+![IIS Installation](https://i.imgur.com/OFaZmGi.png)
 
-MySQL Database - MySQL 5.5.62 must be installed with a root/root account and a database named "osTicket" created using HeidiSQL.
+### 3. Install Supporting Software
+From the osTicket Installation Files:
+- Installed PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
+- Installed Rewrite Module (rewrite_amd64_en-US.msi)
+- Created directory C:\PHP
+- Extracted PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) to C:\PHP
+- Installed VC_redist.x86.exe
+- Installed MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+  - Typical Setup
+  - Standard Configuration
+  - Set Root Password: root (would use more secure passwords in production)
 
-Dependency Installation - VC_redist.x86 runtime and specific PHP extensions (php_imap.dll, php_intl.dll, php_opcache.dll) need to be enabled for osTicket functionality.
+![PHP Installation](https://i.imgur.com/vvKaUKL.png)
 
-<h2>Installation Steps</h2>
+### 4. Configure IIS
+- Registered PHP from within IIS using PHP Manager
+- Set path to C:\PHP\php-cgi.exe
+- Restarted IIS
 
-<p>
-1. Server Environment Setup
-  Enable IIS with CGI: Install Internet Information Services (IIS) via Windows Features, ensuring the CGI module is enabled under Application Development Features.
+### 5. Install osTicket
+- Extracted osTicket v1.15.8 from the installation files
+- Copied "upload" folder to c:\inetpub\wwwroot
+- Renamed folder to "osTicket"
+- Restarted IIS
 
-Install Dependencies:
+![osTicket Files](https://i.imgur.com/tVJpMCs.png)
 
-  PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi).
+### 6. Configure Required PHP Extensions
+- Accessed the osTicket installer at http://localhost/osTicket/setup
+- Enabled the following PHP extensions through IIS PHP Manager:
+  - php_imap.dll
+  - php_intl.dll
+  - php_opcache.dll
 
-  URL Rewrite Module (rewrite_amd64_en-US.msi).
+### 7. Configure osTicket Files
+- Renamed ost-sampleconfig.php to ost-config.php:
+  - From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
+  - To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
+- Set permissions on ost-config.php:
+  - Disabled inheritance
+  - Added "Everyone" with "All" permissions (would restrict further in production)
 
-  Extract PHP 7.3.8 to C:\PHP and register it in IIS using PHP Manager (pointing to php-cgi.exe).
+![File Permissions](https://i.imgur.com/yCY1oM7.png)
 
-  Install the VC++ runtime (VC_redist.x86.exe) for PHP compatibility.
+### 8. Set Up Database
+- Installed HeidiSQL from the installation files
+- Created a new database session with:
+  - Username: root
+  - Password: root
+- Created a new database called "osTicket"
 
-2. Database Configuration
-  Install MySQL 5.5.62: Use the typical setup, then configure with:
+![HeidiSQL Database](https://i.imgur.com/YXTtzrX.png)
 
-  Standard Configuration.
+### 9. Complete osTicket Installation
+- Configured basic settings:
+  - Helpdesk Name: Zach's Help Desk
+  - Default Email (receives email from customers)
+- Configured database settings:
+  - MySQL Database: osTicket
+  - MySQL Username: root
+  - MySQL Password: root
+- Installed successfully!
 
-  Username: root, Password: root.
+![Installation Success](https://i.imgur.com/h6riq3C.png)
 
-Create osTicket Database:
+### 10. Clean Up
+- Deleted: C:\inetpub\wwwroot\osTicket\setup directory
+- Set ost-config.php to "Read Only" permissions:
+  - C:\inetpub\wwwroot\osTicket\include\ost-config.php
 
-  Use HeidiSQL to connect to MySQL (credentials root/root).
+## Post-Installation Access
+- Admin/Analyst Login: http://localhost/osTicket/scp/login.php
+- End Users osTicket URL: http://localhost/osTicket/
 
-  Create a new database named osTicket.
-
-3. osTicket Installation & Finalization
-Deploy osTicket Files:
-
-  Unzip osTicket-v1.15.8.zip and copy the upload folder to C:\inetpub\wwwroot. Rename it to osTicket.
-
-Configure Permissions:
-
-  Rename ost-sampleconfig.php to ost-config.php in the include folder.
-
-  Assign Full Control permissions to ost-config.php for "Everyone".
-
-Complete Web Setup:
-
-  Access http://localhost/osTicket in your browser.
-
-  Enable required PHP extensions (php_imap.dll, php_intl.dll, php_opcache.dll) via PHP Manager.
-
-  Link the MySQL database (osTicket, root/root) during the web installer.
-
-Post-Installation Security:
-
- Delete the setup folder in C:\inetpub\wwwroot\osTicket.
-
- Restrict ost-config.php to Read-only permissions.
-</p>
-<br />
+## Lessons Learned
+- Gained experience deploying Windows virtual machines in Azure
+- Learned about configuring IIS and PHP for web applications
+- Practiced database creation and management with MySQL
+- Implemented proper file permissions for security
+- Understood the relationships between different web technologies in a WIMP stack
