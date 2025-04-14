@@ -23,8 +23,8 @@ This project demonstrates the installation and configuration of osTicket, an ope
 - Created a Windows 10 VM (4 vCPUs) named "osticket-vm"
 - Username: labuser
 - Password: osTicketPassword1! (would use more secure passwords in production)
+![Azure VM Creation](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20112307.png?raw=true)
 
-![Azure VM Creation](https://i.imgur.com/5HzGhsb.png)
 
 ### 2. Install Internet Information Services (IIS)
 - Enabled IIS in Windows WITH CGI
