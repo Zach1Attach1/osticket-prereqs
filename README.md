@@ -55,8 +55,9 @@ From the osTicket Installation Files:
 - Renamed folder to "osTicket"
 - Restarted IIS
 
-![osTicket Files](https://i.imgur.com/tVJpMCs.png)
+![osTicket Files](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20121024.png?raw=true)
 
+![osTicket Setup](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20121356.png?raw=true)
 ### 6. Configure Required PHP Extensions
 - Accessed the osTicket installer at http://localhost/osTicket/setup
 - Enabled the following PHP extensions through IIS PHP Manager:
@@ -72,16 +73,16 @@ From the osTicket Installation Files:
   - Disabled inheritance
   - Added "Everyone" with "All" permissions (would restrict further in production)
 
-![File Permissions](https://i.imgur.com/yCY1oM7.png)
+![File Renaming](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20122216.png?raw=true)
 
+![Permission Configuration](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20122411.png?raw=true)
 ### 8. Set Up Database
 - Installed HeidiSQL from the installation files
 - Created a new database session with:
   - Username: root
   - Password: root
 - Created a new database called "osTicket"
-
-![HeidiSQL Database](https://i.imgur.com/YXTtzrX.png)
+![HeidiSQL Database](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20123328.png?raw=true)
 
 ### 9. Complete osTicket Installation
 - Configured basic settings:
@@ -92,9 +93,7 @@ From the osTicket Installation Files:
   - MySQL Username: root
   - MySQL Password: root
 - Installed successfully!
-
-![Installation Success](https://i.imgur.com/h6riq3C.png)
-
+![Installation Success](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20123507.png?raw=true)
 ### 10. Clean Up
 - Deleted: C:\inetpub\wwwroot\osTicket\setup directory
 - Set ost-config.php to "Read Only" permissions:
