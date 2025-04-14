@@ -29,8 +29,7 @@ This project demonstrates the installation and configuration of osTicket, an ope
 ### 2. Install Internet Information Services (IIS)
 - Enabled IIS in Windows WITH CGI
 - Installed World Wide Web Services -> Application Development Features -> CGI
-
-![IIS Installation](https://i.imgur.com/OFaZmGi.png)
+![IIS Installation](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20115015.png?raw=true)
 
 ### 3. Install Supporting Software
 From the osTicket Installation Files:
