@@ -42,8 +42,7 @@ From the osTicket Installation Files:
   - Typical Setup
   - Standard Configuration
   - Set Root Password: root (would use more secure passwords in production)
-
-![PHP Installation](https://i.imgur.com/vvKaUKL.png)
+![PHP Installation](https://github.com/Zach1Attach1/Images-folder/blob/main/Screenshot%202025-04-14%20120151.png?raw=true)
 
 ### 4. Configure IIS
 - Registered PHP from within IIS using PHP Manager
